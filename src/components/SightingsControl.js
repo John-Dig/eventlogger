@@ -33,10 +33,15 @@ this.setState({selectedSightings: selectedSightings});
 
   handleAddingNewSightingsToList = (newSightings) => {
     const newMainSightingsList = this.state.mainSightingsList.concat(newSightings);
-    this.setState({mainSightingsList: newMainSightingsList,
-      formVisibleOnPage: false
+    this.setState({mainSightingsList: newMainSightingsList, formVisibleOnPage: false
     });
   }
+
+  handleDeleteSightings = (id) => {
+    const newMainSightingsList = this.state.mainSightingsList.filter(sightings => sightings.id !== id);
+    this.setState({ mainSightingsList: newMainSightingsList, selectedSightings: null});
+  }
+
 
   render() {
     let currentlyVisibleState = null;
@@ -44,7 +49,7 @@ this.setState({selectedSightings: selectedSightings});
 
     
     if (this.state.selectedSightings != null) {
-      currentlyVisibleState = <SightingsDetail sightings = {this.state.selectedSightings} />
+      currentlyVisibleState = <SightingsDetail sightings = {this.state.selectedSightings} onClickingDelete={this.handleDeleteSightings} />
       buttonText = "Return to Sightings List"; 
     }
 
