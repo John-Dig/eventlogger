@@ -23,7 +23,7 @@ function NewSightingsForm(props) {
           type='text'
           name='location'
           placeHolder='Location' />
-        <textarea
+        <textarea 
         name='description' />
         <button type='submit'>Add Sighting</button>
       </form>

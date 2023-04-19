@@ -27,7 +27,7 @@ class SightingsControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <newSightingsForm onNewSightingsCreation={this.handleAddingNewSightingsToList} />;
+      currentlyVisibleState = <NewSightingsForm onNewSightingsCreation={this.handleAddingNewSightingsToList} />;
       buttonText = "Return to sightings list";
     } else {
       currentlyVisibleState = <SightingsList sightingsList={this.state.mainSightingsList} />;
