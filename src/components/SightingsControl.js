@@ -1,6 +1,7 @@
 import React from 'react';
 import NewSightingsForm from './NewSightingsForm';
 import SightingsList from './SightingsList';
+import SightingsDetail from './SightingsDetail';
 
 class SightingsControl extends React.Component {
 
@@ -8,12 +9,26 @@ class SightingsControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      mainSightingsList: []
+      mainSightingsList: [],
+      selectedSightings: null //jd
     };
   }
 
+handleChangingSelectedSightings = (id) => { //jd
+const selectedSightings = this.state.mainSightingsList.filter(sightings => sightings.id === id)[0];
+this.setState({selectedSightings: selectedSightings});
+}
+
   handleClick = () => {
-    this.setState(prevState =>({formVisibleOnPage: !prevState.formVisibleOnPage}))
+    if (this.state.selectedSightings != null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedSightings: null
+      });
+    } else {
+      this.setState(prevState =>({formVisibleOnPage: !prevState.formVisibleOnPage,}));//a trailing comma, just to show it can be done without errors. Then you don't have to put one later if you add an argument!
+    }
+    
   }
 
   handleAddingNewSightingsToList = (newSightings) => {
@@ -26,13 +41,23 @@ class SightingsControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnPage) {
+
+    //jd
+    if (this.state.selectedSightings != null) {
+      currentlyVisibleState = <SightingsDetail sightings = {this.state.selectedSightings} />
+      buttonText = "Return to Sightings List"; 
+    }
+
+
+
+    else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewSightingsForm onNewSightingsCreation={this.handleAddingNewSightingsToList} />;
       buttonText = "Return to sightings list";
     } else {
-      currentlyVisibleState = <SightingsList sightingsList={this.state.mainSightingsList} />;
+      currentlyVisibleState = <SightingsList sightingsList={this.state.mainSightingsList} onSightingsSelection={this.handleChangingSelectedSightings} />;
       buttonText = "Add sighting";
     }
+
     return (
       <React.Fragment>
         {currentlyVisibleState}
