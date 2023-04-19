@@ -1,3 +1,8 @@
+# Event Logger
+_by John Diggins and David Jandron_
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
