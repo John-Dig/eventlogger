@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
+import ReusableForm from './ReusableForm';
 
 function NewSightingsForm(props) {
   function handleNewSightingsFormSubmission(event) {
@@ -14,19 +15,7 @@ function NewSightingsForm(props) {
   }
   return (
     <React.Fragment>
-      <form onSubmit={handleNewSightingsFormSubmission}>
-        <input
-          type='text'
-          name='userName'
-          placeHolder='User Name' />
-        <input
-          type='text'
-          name='location'
-          placeHolder='Location' />
-        <textarea 
-        name='description' />
-        <button type='submit'>Add Sighting</button>
-      </form>
+      <ReusableForm formSubmissionHandler={handleNewSightingsFormSubmission} buttonText="Submit your fake story" />
     </React.Fragment>
   );
 }
