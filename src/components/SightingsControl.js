@@ -10,11 +10,11 @@ class SightingsControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainSightingsList: [],
-      selectedSightings: null //jd
+      selectedSightings: null 
     };
   }
 
-handleChangingSelectedSightings = (id) => { //jd
+handleChangingSelectedSightings = (id) => { 
 const selectedSightings = this.state.mainSightingsList.filter(sightings => sightings.id === id)[0];
 this.setState({selectedSightings: selectedSightings});
 }
@@ -26,7 +26,7 @@ this.setState({selectedSightings: selectedSightings});
         selectedSightings: null
       });
     } else {
-      this.setState(prevState =>({formVisibleOnPage: !prevState.formVisibleOnPage,}));//a trailing comma, just to show it can be done without errors. Then you don't have to put one later if you add an argument!
+      this.setState(prevState =>({formVisibleOnPage: !prevState.formVisibleOnPage}));
     }
     
   }
@@ -42,7 +42,7 @@ this.setState({selectedSightings: selectedSightings});
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    //jd
+    
     if (this.state.selectedSightings != null) {
       currentlyVisibleState = <SightingsDetail sightings = {this.state.selectedSightings} />
       buttonText = "Return to Sightings List"; 
