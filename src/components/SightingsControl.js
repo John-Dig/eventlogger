@@ -47,11 +47,11 @@ class SightingsControl extends React.Component {
     this.setState({ mainSightingsList: newMainSightingsList, selectedSightings: null });
   }
 
-  handleEditSightingsInList = (sightingsToEdit) => {
-    const editedMainSightingsList = this.state.mainSightingsList.filter(sightings => sightings.id).concat(sightingsToEdit);
+  handleEditingSightingsInList = (sightingsToEdit) => {
+    const editedMainSightingsList = this.state.mainSightingsList.filter(sightings => sightings.id !== this.state.selectedSightings.id).concat(sightingsToEdit);
     this.setState({ mainSightingsList: editedMainSightingsList,
     editing: false,
-    selectedSightings: null }); //?? maybe something else, set -selectedSightings to false-.
+    selectedSightings: null });
   }
 
   handleEditClick = () => {
