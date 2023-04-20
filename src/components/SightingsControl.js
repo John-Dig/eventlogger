@@ -42,7 +42,10 @@ this.setState({selectedSightings: selectedSightings});
     this.setState({ mainSightingsList: newMainSightingsList, selectedSightings: null});
   }
 
-
+  handleUpdateSightingsInList = (id) => {
+    const newMainSightingsList = this.state.mainSightingsList.filter(sightings => sightings.id !== id).concat(updatedSightings);
+    this.setState({ mainSightingsList: newMainSightingsList, }); //?? maybe something else, set -selectedSightings to false-.
+  }
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
