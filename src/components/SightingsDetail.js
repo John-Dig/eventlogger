@@ -11,6 +11,7 @@ function SightingsDetail(props){
       <h3>{sightings.userName}</h3>
       <h3>{sightings.location}</h3>
       <h3>{sightings.description}</h3>
+      <button onClick={ props.onClickingEdit}>Edit Sighting</button>
       <button onClick={()=> onClickingDelete(sightings.id) }>Delete sighting</button>
       <hr/>
     </React.Fragment>
@@ -18,8 +19,9 @@ function SightingsDetail(props){
 }
 
 SightingsDetail.propTypes = {
-  ticket: PropTypes.object,
-  onClickingDelete: PropTypes.func
+  sightings: PropTypes.object,
+  onClickingDelete: PropTypes.func,
+  onClickingEdit: PropTypes.func
 };
 
 export default SightingsDetail;
