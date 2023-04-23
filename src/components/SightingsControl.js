@@ -32,7 +32,6 @@ class SightingsControl extends React.Component {
     } else {
       this.setState(prevState => ({ formVisibleOnPage: !prevState.formVisibleOnPage }));
     }
-
   }
 
   handleAddingNewSightingsToList = (newSightings) => {
@@ -49,14 +48,16 @@ class SightingsControl extends React.Component {
 
   handleEditingSightingsInList = (sightingsToEdit) => {
     const editedMainSightingsList = this.state.mainSightingsList.filter(sightings => sightings.id !== this.state.selectedSightings.id).concat(sightingsToEdit);
-    this.setState({ mainSightingsList: editedMainSightingsList,
-    editing: false,
-    selectedSightings: null });
+    this.setState({
+      mainSightingsList: editedMainSightingsList,
+      editing: false,
+      selectedSightings: null
+    });
   }
 
   handleEditClick = () => {
     console.log("handleEditClick reached!");
-    this.setState({editing: true});     
+    this.setState({ editing: true });
   }
 
   render() {
@@ -64,16 +65,16 @@ class SightingsControl extends React.Component {
     let buttonText = null;
 
     if (this.state.editing) {
-      currentlyVisibleState = <EditSightingsForm sightings = {this.state.selectedSightings}
-      onEditSightings = {this.handleEditingSightingsInList} />
-      buttonText = "Return to sightings list";}
-
-    else if (this.state.selectedSightings != null) {
-      currentlyVisibleState = <SightingsDetail sightings={this.state.selectedSightings} onClickingDelete={this.handleDeleteSightings} 
-      onClickingEdit = {this.handleEditClick}/>
-      buttonText = "Return to Sightings List";
+      currentlyVisibleState = <EditSightingsForm sightings={this.state.selectedSightings}
+        onEditSightings={this.handleEditingSightingsInList} />
+      buttonText = "Return to sightings list";
     }
 
+    else if (this.state.selectedSightings != null) {
+      currentlyVisibleState = <SightingsDetail sightings={this.state.selectedSightings} onClickingDelete={this.handleDeleteSightings}
+        onClickingEdit={this.handleEditClick} />
+      buttonText = "Return to Sightings List";
+    }
 
     else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewSightingsForm onNewSightingsCreation={this.handleAddingNewSightingsToList} />;

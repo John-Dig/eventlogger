@@ -4,12 +4,12 @@ import { v4 } from 'uuid';
 import ReusableForm from './ReusableForm';
 
 function NewSightingsForm(props) {
-  function handleNewSightingsFormSubmission(event) {
-    event.preventDefault();
+  function handleNewSightingsFormSubmission(e) {
+    e.preventDefault();
     props.onNewSightingsCreation({
-      userName: event.target.userName.value,
-      location: event.target.location.value, 
-      description: event.target.description.value,
+      userName: e.target.userName.value,
+      location: e.target.location.value, 
+      description: e.target.description.value,
       id: v4()
     });
   }
